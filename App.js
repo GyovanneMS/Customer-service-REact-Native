@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
+import React from "react";
+import { useFonts } from "expó-font";
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [ fonteCarregada ] = useFonts({
+      "Rubik": require("./assets/static/Rubik-SemiBoldItalic.ttf")
+    });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    const Stack = createNativeStackNavigator();
+
+    if(fonteCarregada)
+      return <NavigationContainer>
+          <Stack.Navigator initiaçRouteName="Clinica" screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="Clinica" component={...}/>
+              <Stack.Screen name="Paciente" component={...}/>
+          </Stack.Navigator>
+      </NavigationContainer>
+
+}
