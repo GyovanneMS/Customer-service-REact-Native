@@ -5,9 +5,7 @@ import Navegacao from "../components/Navegacao";
 import Janela from "../components/Janela";
 import Salvar from "../functions/Salvar";
 
-
-
-export default function Paciente(){
+export default function Paciente({navigation}){
 
     const [formulario, definirFormulario] = useState({
         nome: "",
@@ -23,7 +21,7 @@ export default function Paciente(){
 
     return <Tela>
         <StatusBar barStyle={"dark-content"} backgroundColor={"#fff"}/>
-        <Navegacao navigation={navigation}/>
+       <Navegacao navigation={navigation}/>
         <Janela>
             <Text style={{fontSize: 20, fontFamily: "Rubik", textAlign: "center"}}>
                 Formulário do paciente {"\n"}
@@ -31,27 +29,34 @@ export default function Paciente(){
 
             <TextInput
             style={{backgroundColor: "#eee", fontFamily: "Rubik", padding: 8, marginBottom: 8}}
-            value={/.../}
-            onChangeText={/.../}
+            value={formulario.nome}
+            onChangeText={valor => definirFormulario({...formulario, nome: valor})}
             placeholder="Nome"/>
             <TextInput
             style={{backgroundColor: "#eee", fontFamily: "Rubik", padding: 8, marginBottom: 8}}
-            value={/.../}
-            onChangeText={/.../}
+            value={formulario.horario}
+            onChangeText={valor => definirFormulario({...formulario, horario: valor})}
             placeholder="horário"/>
             <TextInput
             style={{backgroundColor: "#eee", fontFamily: "Rubik", padding: 8, marginBottom: 8}}
-            value={/.../}
-            onChangeText={/.../}
+            value={formulario.categoria}
+            onChangeText={valor => definirFormulario({...formulario, categoria: valor})}
             placeholder="categora"/>
         </Janela>
-        <Pressable onPress={ SalvarFormulario}>
-            <Text Style ={{
+        <Pressable onPress={ SalvarFormulario}
+        style={{
+            flex: 1,
+            alignItems: "center",
+        }}
+        >
+            <Text style ={{
                 backgroundColor: "#6ebbdc",
                 color: "#fff",
                 fontFamily: "Rubik",
                 paddingVertical: 16,
-                textAlign: "center"}}> Eviar </Text>
+                width: '30%',
+                marginTop: 10,
+                textAlign: "center"}}> Enviar </Text>
         </Pressable>
     </Tela>
 }
